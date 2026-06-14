@@ -1,0 +1,220 @@
+content,label,type,source_note
+"So, I was thinking about how we handle mental health nowadays, and tbh, it's pretty messed up. Like, everyone's just scrolling on TikTok and hoping for a quick dopamine hit, but real self-care is actually super boring. It is about sleeping 8 hours, saying no to toxic hangouts, and actually drinking water. No one wants to hear that though. They'd rather buy a $50 crystal or a fancy green juice. Anyway, that's my rant for today. Don't forget to actually touch some grass guys.",human,text,human_messy_blog_post
+"In today's fast-paced digital ecosystem, the convergence of artificial intelligence and educational methodologies has ushered in a paradigm shift. It is crucial to recognize that adaptive learning platforms, powered by state-of-the-art algorithms, can tailor pedagogical resources to individual student profiles. This dynamic optimization not only enhances cognitive retention but also fosters an environment of inclusive academic development. Delving deeper into the systemic implications, we observe a marked reduction in attrition rates across diverse demographics.",ai,text,ai_claude_highly_structured_unseen_topic
+"Honestly, I tried using one of those new AI assistants to write my resume and it turned out absolute garbage. It sounded like a corporate robot had eaten a dictionary and then barfed it onto the page. 'Synergistic alignment of core competencies'—who actually talks like that in real life? I spent three hours deleting all the buzzwords and rewriting it so it actually sounds like a normal human being wrote it. Lesson learned: do it yourself if you want it done right.",human,text,human_opinion_piece_with_slang
+"The global financial market experienced unprecedented volatility during Tuesday's trading session, driven by unexpected inflationary pressures and shifting monetary policies. Standard and Poor's index declined by approximately 2.3%, reflecting broader investor anxiety. Analysts note that while the tech sector bore the brunt of the sell-off, defensive assets like consumer staples and government bonds demonstrated relative resilience, serving as a critical hedge for risk-averse portfolios. The central bank's upcoming press briefing remains a focal point for global markets.",ai,text,ai_gpt4_news_style
+"Okay, so here is a super simple way to think about baking sourdough. Don't overcomplicate it! It's literally just flour, water, salt, and time. You don't need a fancy proofing basket or a custom steam oven. Just mix the dough, let it sit overnight (seriously, just let it do its thing), shape it roughly, and bake it in a hot dutch oven. If it's a bit flat, who cares? It's still gonna taste amazing with butter. Happy baking!",human,text,human_cooking_blog_unseen_topic
+"As we examine the historical trajectory of quantum mechanics, we encounter a fascinating tapestry of theoretical breakthroughs and experimental validations. From Planck's blackbody radiation experiments to the elegant formulation of the Schrodinger wave equation, the discipline has consistently challenged classical intuitions. A key aspect to note is the principle of superposition, which posits that a quantum system can occupy multiple states simultaneously. This profound mathematical framework serves as a testament to the intricate and beautiful complexity of our universe.",ai,text,ai_gemini_scientific_style
+"I mean, look, if you're not listening to 70s Japanese City Pop while coding, are you even really living? The basslines are just... *chef's kiss*. It's got this perfect blend of nostalgic synth chords, upbeat brass sections, and production quality that still sounds incredibly fresh today. Even if you don't understand a single word of the lyrics, the vibes are absolutely immaculate. Highly recommend putting on a Tatsuro Yamashita playlist next time you have a major debugging session.",human,text,human_short_music_discussion
+"Artificial intelligence algorithms are rapidly transforming the landscape of modern software engineering. By automating repetitive coding tasks, detecting syntax anomalies, and generating boilerplates, these cognitive models allow developers to focus on higher-level system architecture. However, concerns regarding code provenance, copyright compliance, and security vulnerability propagation persist. It is imperative that development teams establish strict code audit protocols to mitigate these systemic risks while leveraging AI capabilities.",ai,text,ai_llama_unseen_model_blog
+"quick update guys: my laptop literally just died in the middle of pushing my NLP assignment... currently crying in the library waiting for a replacement charger. if anyone has a spare usb-c charger please hit me up ASAP, I will pay in cookies and infinite gratitude. please save me from failing this course.",human,text,human_extremely_short_messy
+"To successfully cultivate a thriving indoor garden, one must master the balance of light, moisture, and soil aeration. Each species exhibits distinct requirements; for instance, succulents thrive in porous, well-draining soil with infrequent watering cycles, whereas tropical ferns demand consistent humidity levels and indirect sunlight. Furthermore, regular monitoring for pests such as spider mites is essential to preserve the structural integrity of the foliage. Implementing a disciplined maintenance routine ensures long-term botanical vitality.",ai,text,ai_claud_long_gardening_post
+"def run_stuff(arr):
+    # idk why i named it this but whatever
+    x = []
+    for idx, item in enumerate(arr):
+        if idx % 2 != 0:
+            # only odd indices
+            x.append(item * 13 + 7)
+    return [v for v in x if v > 100]",human,code,human_python_messy_logic
+"def calculate_odd_index_transformations(data_list: list) -> list:
+    """"""
+    Transforms elements at odd indices of the input list by multiplying by thirteen
+    and adding seven, returning only values that exceed one hundred.
+
+    Parameters:
+    data_list (list): The list of numerical values to process.
+
+    Returns:
+    list: The filtered list of transformed numerical values.
+    """"""
+    transformed_values = []
+    for index, value in enumerate(data_list):
+        if index % 2 != 0:
+            transformed_value = (value * 13) + 7
+            transformed_values.append(transformed_value)
+            
+    # Filter elements exceeding the threshold of 100
+    filtered_results = [val for val in transformed_values if val > 100]
+    return filtered_results",ai,code,ai_gpt4_python_highly_documented
+"import java.util.*;
+public class Checker {
+    public static boolean hasCycle(int[][] g) {
+        // messy graph cycle check
+        int n = g.length;
+        int[] v = new int[n];
+        for(int i=0; i<n; i++) {
+            if(v[i]==0 && dfs(i, g, v)) return true;
+        }
+        return false;
+    }
+    private static boolean dfs(int curr, int[][] g, int[] v) {
+        v[curr] = 1; // visiting
+        for(int next : g[curr]) {
+            if(v[next]==1) return true;
+            if(v[next]==0 && dfs(next, g, v)) return true;
+        }
+        v[curr] = 2; // visited
+        return false;
+    }
+}",human,code,human_java_graph_algorithm
+"/**
+ * The CycleDetector class provides utility methods to verify the presence of
+ * cyclic dependencies within an unweighted directed graph structure.
+ */
+public class CycleDetector {
+    
+    public static boolean detectCycle(int[][] adjacencyMatrix) {
+        if (adjacencyMatrix == null) {
+            return false;
+        }
+        int nodeCount = adjacencyMatrix.length;
+        int[] visitationStates = new int[nodeCount]; // 0=Unvisited, 1=Visiting, 2=Visited
+        
+        for (int i = 0; i < nodeCount; i++) {
+            if (visitationStates[i] == 0) {
+                if (depthFirstSearch(i, adjacencyMatrix, visitationStates)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    private static boolean depthFirstSearch(int currentNode, int[][] adj, int[] states) {
+        states[currentNode] = 1; // Mark node as in-progress
+        
+        for (int neighbor : adj[currentNode]) {
+            if (states[neighbor] == 1) {
+                return true; // Cycle detected via back-edge
+            }
+            if (states[neighbor] == 0) {
+                if (depthFirstSearch(neighbor, adj, states)) {
+                    return true;
+                }
+            }
+        }
+        
+        states[currentNode] = 2; // Mark node as fully processed
+        return false;
+    }
+}",ai,code,ai_claude_java_clean_architecture
+"#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    vector<int> a = {1, 2, 3, 4, 5};
+    int s = 0;
+    for(auto x: a) {
+        s += x * x;
+    }
+    cout << ""sum of squares is "" << s << endl;
+    return 0;
+}",human,code,human_cpp_short_simple
+"#include <iostream>
+#include <vector>
+#include <numeric>
+
+/**
+ * Computes and prints the sum of the squares of elements in a vector.
+ */
+int main() {
+    const std::vector<int> elements = {1, 2, 3, 4, 5};
+    
+    // Accumulate the squares using an elegant lambda expression
+    long long sumOfSquares = std::accumulate(elements.begin(), elements.end(), 0LL,
+        [](long long accumulator, int value) {
+            return accumulator + (static_cast<long long>(value) * value);
+        });
+        
+    std::cout << ""The computed sum of squares is: "" << sumOfSquares << std::endl;
+    return 0;
+}",ai,code,ai_gemini_cpp_standard_library
+"class FastNode:
+    def __init__(self, key, val):
+        self.k = key
+        self.v = val
+        self.nxt = None
+        self.prv = None
+
+class LRUCache:
+    def __init__(self, cap):
+        self.c = cap
+        self.d = {}
+        self.head = FastNode(0, 0)
+        self.tail = FastNode(0, 0)
+        self.head.nxt = self.tail
+        self.tail.prv = self.head
+        
+    def _rm(self, node):
+        node.prv.nxt = node.nxt
+        node.nxt.prv = node.prv
+        
+    def _add(self, node):
+        node.nxt = self.head.nxt
+        node.prv = self.head
+        self.head.nxt.prv = node
+        self.head.nxt = node",human,code,human_python_lru_cache
+"class CacheNode:
+    def __init__(self, key: int, value: int):
+        self.key = key
+        self.value = value
+        self.next = None
+        self.prev = None
+
+class LeastRecentlyUsedCache:
+    """"""
+    LRUCache implementation utilizing a hash map coupled with a 
+    doubly linked list to achieve O(1) operations for both get and put.
+    """"""
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.lookup_map = {}
+        self.head = CacheNode(0, 0)
+        self.tail = CacheNode(0, 0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        
+    def remove_node(self, node: CacheNode) -> None:
+        """"""Removes an existing node from the doubly linked list.""""""
+        previous_node = node.prev
+        next_node = node.next
+        previous_node.next = next_node
+        next_node.prev = previous_node
+        
+    def add_to_front(self, node: CacheNode) -> None:
+        """"""Inserts a new node immediately after the sentinel head.""""""
+        node.next = self.head.next
+        node.prev = self.head
+        self.head.next.prev = node
+        self.head.next = node",ai,code,ai_llama_python_lru_cache
+"# Simple python parser script to count keywords
+def check_py(fpath):
+    try:
+        with open(fpath, 'r') as f:
+            code = f.read()
+            keywords = ['def', 'class', 'import', 'return', 'if', 'for']
+            counts = {kw: code.count(kw) for kw in keywords}
+            return counts
+    except Exception as e:
+        print('Failed to read file:', e)
+        return {}",human,code,human_short_keywords_parser
+"import typing
+
+def analyze_python_keywords(file_path: str) -> typing.Dict[str, int]:
+    """"""
+    Analyzes a Python file to compute the frequencies of critical keywords.
+    Robust exception handling guarantees safety against file access issues.
+    """"""
+    target_keywords = ['def', 'class', 'import', 'return', 'if', 'for']
+    keyword_frequencies = {keyword: 0 for keyword in target_keywords}
+    
+    try:
+        with open(file_path, 'r', encoding='utf-8') as source_file:
+            file_contents = source_file.read()
+            for keyword in target_keywords:
+                keyword_frequencies[keyword] = file_contents.count(keyword)
+    except IOError as file_error:
+        print(f""[ERROR] Failed to open source file at '{file_path}': {file_error}"")
+        
+    return keyword_frequencies",ai,code,ai_claud_python_keyword_analyzer

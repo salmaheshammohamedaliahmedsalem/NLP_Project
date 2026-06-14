@@ -1,0 +1,6 @@
+,accuracy,precision,recall,f1,roc_auc
+1. TF-IDF + Logistic Regression,1.0,1.0,1.0,1.0,1.0
+2. TF-IDF + Linear SVM,1.0,1.0,1.0,1.0,1.0
+3. Stylometric Features + Classical ML,1.0,1.0,1.0,1.0,1.0
+4. Transformer Baseline (DistilRoBERTa),1.0,1.0,1.0,1.0,1.0
+5. Proposed Hybrid Model (Transformer+Sty+Domain),0.9973147153598282,1.0,0.9947589098532494,0.9973725696269049,1.0

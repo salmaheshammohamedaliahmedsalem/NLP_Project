@@ -1,0 +1,9 @@
+column,unique_values,mean_label_purity,risk
+source,4,1.0,high
+ai_model,4,1.0,high
+word_count,49,0.6862990963316358,low
+topic,11,0.5106051562069943,low
+complexity_score,10,0.5069629642860585,low
+type,2,0.5062999210079874,low
+language,4,0.506204551632973,low
+is_multiline_code,2,0.5052575423022443,low

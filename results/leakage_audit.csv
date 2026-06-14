@@ -1,0 +1,16 @@
+Metric,Value
+Total Rows,8242
+Crosstab_type_code,"Human: 50.00%, AI: 50.00%"
+Crosstab_type_text,"Human: 49.44%, AI: 50.56%"
+Crosstab_source_blog,"Human: 100.00%, AI: 0.00%"
+Crosstab_source_generated,"Human: 0.00%, AI: 100.00%"
+Crosstab_source_github,"Human: 100.00%, AI: 0.00%"
+Crosstab_source_news,"Human: 100.00%, AI: 0.00%"
+Crosstab_ai_model_Claude,"Human: 0.00%, AI: 100.00%"
+Crosstab_ai_model_GPT-4,"Human: 0.00%, AI: 100.00%"
+Crosstab_ai_model_Gemini,"Human: 0.00%, AI: 100.00%"
+Crosstab_ai_model_missing,"Human: 100.00%, AI: 0.00%"
+Crosstab_language_cpp,"Human: 50.00%, AI: 50.00%"
+Crosstab_language_en,"Human: 49.44%, AI: 50.56%"
+Crosstab_language_java,"Human: 50.00%, AI: 50.00%"
+Crosstab_language_python,"Human: 50.00%, AI: 50.00%"

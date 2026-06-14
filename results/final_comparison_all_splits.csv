@@ -1,0 +1,6 @@
+Model,Random Split F1,Prompt-Grouped F1,Domain Holdout F1,Challenge Test F1
+1. TF-IDF + Logistic Regression,1.0,1.0,1.0,0.16666666666666666
+2. TF-IDF + Linear SVM,1.0,1.0,1.0,0.16666666666666666
+3. Stylometric Features + Classical ML,1.0,1.0,0.0,0.6666666666666666
+4. Transformer Baseline (DistilRoBERTa),1.0,1.0,1.0,0.0
+5. Proposed Hybrid Model (Transformer+Sty+Domain),1.0,0.9973725696269049,1.0,0.0

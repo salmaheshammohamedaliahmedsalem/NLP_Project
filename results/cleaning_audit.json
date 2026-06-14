@@ -1,0 +1,34 @@
+{
+  "raw_rows": 20000,
+  "raw_columns": [
+    "id",
+    "prompt",
+    "content",
+    "type",
+    "source",
+    "label",
+    "topic",
+    "word_count",
+    "char_count",
+    "ai_model",
+    "language",
+    "complexity_score",
+    "is_multiline_code"
+  ],
+  "text_col": "content",
+  "label_col": "label",
+  "domain_col": "type",
+  "rows_after_required_not_null": 20000,
+  "ai_marker_rows_before_cleaning": 10004,
+  "conflicting_normalized_texts": 918,
+  "duplicate_normalized_rows_before_drop": 1121,
+  "clean_rows": 6406,
+  "removed_rows_total": 13594,
+  "label_distribution_clean": {
+    "0": 3157,
+    "1": 3249
+  },
+  "domain_distribution_clean": {
+    "text": 6406
+  }
+}
