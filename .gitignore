@@ -6,6 +6,8 @@ __pycache__/
 venv/
 models/*
 !models/epoch_tfidf_sgd.joblib
+!models/raid_best_tfidf.joblib
 data/processed/*.parquet
 *.log
 !results/training.log
+!results/raid/raid_training.log

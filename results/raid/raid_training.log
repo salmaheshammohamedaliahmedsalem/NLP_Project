@@ -1,0 +1,40 @@
+2026-06-14 14:54:06 | INFO | Loading RAID subset: /Users/salmaheshamsalem/Desktop/NLP_Project/data/raid/raid_quick_subset.csv
+2026-06-14 14:54:06 | INFO | Dataset shape: (1000, 10)
+2026-06-14 14:54:06 | INFO | Label counts: {'human': 500, 'ai': 500}
+2026-06-14 14:54:06 | INFO | Domain counts: {'abstracts': 1000}
+2026-06-14 14:54:06 | INFO | Model counts: {'human': 500, 'llama-chat': 300, 'mpt': 200}
+2026-06-14 14:54:06 | INFO | Attack counts: {'none': 1000}
+2026-06-14 14:54:06 | INFO | === Split: random | train=700 val=150 test=150 ===
+2026-06-14 14:54:06 | INFO | Training RAID TF-IDF Word LR on random
+2026-06-14 14:54:06 | INFO | random | RAID TF-IDF Word LR | acc=0.9333 f1=0.9324 macro_f1=0.9333 auc=0.9819
+2026-06-14 14:54:06 | INFO | Training RAID TF-IDF Char LR on random
+2026-06-14 14:54:07 | INFO | random | RAID TF-IDF Char LR | acc=0.8800 f1=0.8831 macro_f1=0.8799 auc=0.9582
+2026-06-14 14:54:07 | INFO | Training RAID TF-IDF Word SVM on random
+2026-06-14 14:54:07 | INFO | random | RAID TF-IDF Word SVM | acc=0.9800 f1=0.9799 macro_f1=0.9800 auc=0.9893
+2026-06-14 14:54:07 | INFO | === Split: source_grouped | train=621 val=156 test=223 ===
+2026-06-14 14:54:07 | INFO | Training RAID TF-IDF Word LR on source_grouped
+2026-06-14 14:54:07 | INFO | source_grouped | RAID TF-IDF Word LR | acc=0.9238 f1=0.9283 macro_f1=0.9235 auc=0.9828
+2026-06-14 14:54:07 | INFO | Training RAID TF-IDF Char LR on source_grouped
+2026-06-14 14:54:08 | INFO | source_grouped | RAID TF-IDF Char LR | acc=0.9013 f1=0.9076 macro_f1=0.9009 auc=0.9613
+2026-06-14 14:54:08 | INFO | Training RAID TF-IDF Word SVM on source_grouped
+2026-06-14 14:54:08 | INFO | source_grouped | RAID TF-IDF Word SVM | acc=0.9641 f1=0.9667 macro_f1=0.9639 auc=0.9932
+2026-06-14 14:54:08 | INFO | === Split: holdout_model_llama-chat | train=560 val=140 test=800 ===
+2026-06-14 14:54:08 | INFO | Training RAID TF-IDF Word LR on holdout_model_llama-chat
+2026-06-14 14:54:08 | INFO | holdout_model_llama-chat | RAID TF-IDF Word LR | acc=0.6913 f1=0.3003 macro_f1=0.5511 auc=0.9645
+2026-06-14 14:54:08 | INFO | Training RAID TF-IDF Char LR on holdout_model_llama-chat
+2026-06-14 14:54:10 | INFO | holdout_model_llama-chat | RAID TF-IDF Char LR | acc=0.7063 f1=0.3767 macro_f1=0.5923 auc=0.9105
+2026-06-14 14:54:10 | INFO | Training RAID TF-IDF Word SVM on holdout_model_llama-chat
+2026-06-14 14:54:10 | INFO | holdout_model_llama-chat | RAID TF-IDF Word SVM | acc=0.6837 f1=0.2709 macro_f1=0.5345 auc=0.9473
+2026-06-14 14:54:10 | INFO | Saved best random-split RAID model to /Users/salmaheshamsalem/Desktop/NLP_Project/models/raid_best_tfidf.joblib
+2026-06-14 14:54:10 | INFO | Saved RAID results to /Users/salmaheshamsalem/Desktop/NLP_Project/results/raid/raid_results.csv
+2026-06-14 14:54:10 | INFO | 
+                   split                model  train_size  test_size  accuracy  precision   recall       f1  macro_f1  roc_auc
+holdout_model_llama-chat  RAID TF-IDF Char LR         560        800  0.706250   0.922078 0.236667 0.376658  0.592254 0.910467
+holdout_model_llama-chat  RAID TF-IDF Word LR         560        800  0.691250   1.000000 0.176667 0.300283  0.551104 0.964547
+holdout_model_llama-chat RAID TF-IDF Word SVM         560        800  0.683750   1.000000 0.156667 0.270893  0.534489 0.947267
+                  random RAID TF-IDF Word SVM         700        150  0.980000   0.986486 0.973333 0.979866  0.979999 0.989333
+                  random  RAID TF-IDF Word LR         700        150  0.933333   0.945205 0.920000 0.932432  0.933321 0.981867
+                  random  RAID TF-IDF Char LR         700        150  0.880000   0.860759 0.906667 0.883117  0.879915 0.958222
+          source_grouped RAID TF-IDF Word SVM         621        223  0.964126   0.991453 0.943089 0.966667  0.963916 0.993171
+          source_grouped  RAID TF-IDF Word LR         621        223  0.923767   0.964912 0.894309 0.928270  0.923465 0.982764
+          source_grouped  RAID TF-IDF Char LR         621        223  0.901345   0.939130 0.878049 0.907563  0.900897 0.961301

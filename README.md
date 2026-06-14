@@ -41,6 +41,28 @@ The dataset has severe leakage risks: metadata columns such as `source` and `ai_
 python3 scripts/run_experiments.py
 ```
 
+## Run RAID Robustness Experiments
+
+```bash
+python3 scripts/prepare_raid_subset.py --output data/raid/raid_quick_subset.csv --max-human 1200 --max-ai 1200 --max-per-domain-label 500 --max-per-model 300 --max-scan 80000
+python3 scripts/train_raid.py --data data/raid/raid_quick_subset.csv
+```
+
+RAID results are stored in:
+
+- `data/raid/raid_quick_subset.csv`
+- `results/raid/raid_training.log`
+- `results/raid/raid_results.csv`
+- `models/raid_best_tfidf.joblib`
+
+Current RAID quick-subset result:
+
+- Random split best macro-F1: `0.980` using TF-IDF Word SVM.
+- Source-grouped split best macro-F1: `0.964` using TF-IDF Word SVM.
+- Held-out `llama-chat` model macro-F1 drops to `0.592` using TF-IDF Char LR.
+
+This is a strong paper result because it shows that random scores can be high while unseen-generator robustness remains difficult.
+
 ## Run the Detection Platform
 
 ```bash
@@ -107,6 +129,7 @@ This uses cached `distilroberta-base` weights as a frozen encoder and trains a l
 - `results/cleaning_audit.json`: cleaning and de-duplication summary
 - `results/near_duplicate_audit.csv`: high-similarity text pair warnings
 - `results/experiment_results.csv`: main sklearn experiment table
+- `results/raid/raid_results.csv`: RAID benchmark results
 - `results/sanity_checks.csv`: leakage sanity checks
 - `results/transformer_embedding_results.csv`: optional transformer results
 - `paper/main.tex`: IEEE-style Overleaf-ready paper
