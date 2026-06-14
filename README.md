@@ -5,7 +5,8 @@ This repository contains a reproducible NLP research pipeline for binary classif
 ## Streamlit Platform
 
 - GitHub repository: https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project
-- Streamlit deploy link: https://share.streamlit.io/deploy?repository=https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project&branch=main&mainModule=app.py
+- Streamlit deploy link: https://share.streamlit.io/deploy?repository=salmaheshammohamedaliahmedsalem%2FNLP_Project&branch=main&mainModule=app.py
+- App file on GitHub: https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project/blob/main/app.py
 - Local app command: `streamlit run app.py`
 
 After Streamlit Cloud finishes deployment, replace the deploy link above with the generated `*.streamlit.app` URL.
@@ -67,7 +68,7 @@ The Streamlit app shows the training/validation loss diagram and the terminal lo
 
 Use this prefilled deployment URL:
 
-https://share.streamlit.io/deploy?repository=https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project&branch=main&mainModule=app.py
+https://share.streamlit.io/deploy?repository=salmaheshammohamedaliahmedsalem%2FNLP_Project&branch=main&mainModule=app.py
 
 Use these settings:
 
