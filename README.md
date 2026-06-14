@@ -13,6 +13,7 @@ The dataset has severe leakage risks: metadata columns such as `source` and `ai_
 ├── ai_vs_human_content_v2_20000.csv
 ├── challenge_test.csv
 ├── data/processed/clean_ai_vs_human_content.csv
+├── app.py
 ├── paper/main.tex
 ├── paper/references.bib
 ├── results/
@@ -26,6 +27,16 @@ The dataset has severe leakage risks: metadata columns such as `source` and `ai_
 ```bash
 python3 scripts/run_experiments.py
 ```
+
+## Run the Detection Platform
+
+```bash
+streamlit run app.py
+```
+
+The Streamlit interface provides live AI-vs-human prediction, AI/human probability bars, stylometric signal inspection, experiment result tables, and a direct GitHub link:
+
+https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project
 
 This runs:
 
