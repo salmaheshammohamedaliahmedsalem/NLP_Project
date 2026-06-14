@@ -46,6 +46,7 @@ python3 scripts/run_experiments.py
 ```bash
 python3 scripts/prepare_raid_subset.py --output data/raid/raid_quick_subset.csv --max-human 1200 --max-ai 1200 --max-per-domain-label 500 --max-per-model 300 --max-scan 80000
 python3 scripts/train_raid.py --data data/raid/raid_quick_subset.csv
+python3 scripts/evaluate_previous_on_raid.py
 ```
 
 RAID results are stored in:
@@ -54,6 +55,8 @@ RAID results are stored in:
 - `results/raid/raid_training.log`
 - `results/raid/raid_results.csv`
 - `models/raid_best_tfidf.joblib`
+- `results/raid/previous_models_on_raid.csv`
+- `results/raid/previous_models_on_raid.log`
 
 Current RAID quick-subset result:
 
@@ -62,6 +65,15 @@ Current RAID quick-subset result:
 - Held-out `llama-chat` model macro-F1 drops to `0.592` using TF-IDF Char LR.
 
 This is a strong paper result because it shows that random scores can be high while unseen-generator robustness remains difficult.
+
+External benchmark result for the previous project models:
+
+- Previous models were trained on `data/processed/clean_ai_vs_human_content.csv`.
+- They were tested directly on `data/raid/raid_quick_subset.csv`.
+- Best previous-model macro-F1 on RAID: `0.413` using TF-IDF Char LR.
+- Most previous models collapse toward one class on RAID.
+
+This is the strongest evidence that the original dataset is not enough by itself and that RAID should be used as the serious benchmark.
 
 ## Run the Detection Platform
 

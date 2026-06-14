@@ -1,0 +1,30 @@
+2026-06-14 15:14:57 | INFO | Loading previous cleaned training data: /Users/salmaheshamsalem/Desktop/NLP_Project/data/processed/clean_ai_vs_human_content.csv
+2026-06-14 15:14:57 | INFO | Loading RAID benchmark subset: /Users/salmaheshamsalem/Desktop/NLP_Project/data/raid/raid_quick_subset.csv
+2026-06-14 15:14:57 | INFO | Previous training shape: (6406, 5)
+2026-06-14 15:14:57 | INFO | Previous training label counts: {0: 3157, 1: 3249}
+2026-06-14 15:14:57 | INFO | RAID benchmark shape: (1000, 10)
+2026-06-14 15:14:57 | INFO | RAID label counts: {0: 500, 1: 500}
+2026-06-14 15:14:57 | INFO | RAID domains: {'abstracts': 1000}
+2026-06-14 15:14:57 | INFO | RAID generators: {'human': 500, 'llama-chat': 300, 'mpt': 200}
+2026-06-14 15:14:57 | INFO | Training previous model on original cleaned data: TF-IDF Word LR
+2026-06-14 15:14:58 | INFO | TF-IDF Word LR on RAID | acc=0.4630 f1=0.6324 macro_f1=0.3181 auc=0.2742
+2026-06-14 15:14:58 | INFO | Training previous model on original cleaned data: TF-IDF Char LR
+2026-06-14 15:14:59 | INFO | TF-IDF Char LR on RAID | acc=0.4610 f1=0.2440 macro_f1=0.4126 auc=0.4236
+2026-06-14 15:14:59 | INFO | Training previous model on original cleaned data: TF-IDF Word SVM
+2026-06-14 15:15:00 | INFO | TF-IDF Word SVM on RAID | acc=0.4870 f1=0.6550 macro_f1=0.3275 auc=0.2792
+2026-06-14 15:15:00 | INFO | Training previous model on original cleaned data: Stylometric LR
+2026-06-14 15:15:01 | INFO | Stylometric LR on RAID | acc=0.5000 f1=0.0000 macro_f1=0.3333 auc=0.0850
+2026-06-14 15:15:01 | INFO | Training previous model on original cleaned data: Hybrid TF-IDF + Stylometric LR
+2026-06-14 15:15:04 | INFO | Hybrid TF-IDF + Stylometric LR on RAID | acc=0.4140 f1=0.1121 macro_f1=0.3374 auc=0.1489
+2026-06-14 15:15:04 | INFO | Evaluating saved epoch-trained app model: /Users/salmaheshamsalem/Desktop/NLP_Project/models/epoch_tfidf_sgd.joblib
+2026-06-14 15:15:04 | INFO | Saved Epoch TF-IDF SGD on RAID | acc=0.4540 f1=0.6219 macro_f1=0.3199 auc=0.3435
+2026-06-14 15:15:04 | INFO | Saved summary to /Users/salmaheshamsalem/Desktop/NLP_Project/results/raid/previous_models_on_raid.csv
+2026-06-14 15:15:04 | INFO | Saved slices to /Users/salmaheshamsalem/Desktop/NLP_Project/results/raid/previous_models_on_raid_slices.csv
+2026-06-14 15:15:04 | INFO | 
+                      train_dataset      test_dataset                       detector  train_size  test_size  accuracy  precision  recall       f1  macro_precision  macro_recall  macro_f1  roc_auc
+original_cleaned_global_ai_vs_human raid_quick_subset                 TF-IDF Char LR        6406       1000     0.461   0.408451   0.174 0.244039         0.441837         0.461  0.412618 0.423632
+original_cleaned_global_ai_vs_human raid_quick_subset Hybrid TF-IDF + Stylometric LR        6406       1000     0.414   0.231250   0.074 0.112121         0.340030         0.414  0.337404 0.148888
+original_cleaned_global_ai_vs_human raid_quick_subset                 Stylometric LR        6406       1000     0.500   0.000000   0.000 0.000000         0.250000         0.500  0.333333 0.084952
+original_cleaned_global_ai_vs_human raid_quick_subset                TF-IDF Word SVM        6406       1000     0.487   0.493414   0.974 0.655010         0.246707         0.487  0.327505 0.279236
+original_cleaned_global_ai_vs_human raid_quick_subset         Saved Epoch TF-IDF SGD        6406       1000     0.454   0.475636   0.898 0.621884         0.282461         0.454  0.319935 0.343484
+original_cleaned_global_ai_vs_human raid_quick_subset                 TF-IDF Word LR        6406       1000     0.463   0.480749   0.924 0.632444         0.253195         0.463  0.318077 0.274172

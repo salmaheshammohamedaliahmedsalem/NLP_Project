@@ -100,6 +100,8 @@ The stricter leakage-aware pipeline uses a cleaned subset after normalized dupli
 
 For RAID, three evaluation views are used: a random stratified split, a source-grouped split using source identifiers, and a model-holdout split where \texttt{llama-chat} generations are reserved for testing. The model-holdout split directly tests whether the detector generalizes to an unseen generator style.
 
+We also perform a cross-dataset external benchmark: models trained on the original cleaned Global AI vs Human dataset are evaluated directly on the RAID subset without retraining. This tests whether the earlier detector family learned transferable AI-writing signals or dataset-specific artifacts.
+
 Three sanity checks are used: a label-shuffle text model, a length-only model, and a prompt-only model. A scientifically valid setup should push these controls near chance.
 
 \section{Results}
@@ -236,6 +238,24 @@ Held-out llama-chat & RAID TF-IDF Word SVM & 0.684 & 1.000 & 0.157 & 0.534 \\
 \label{tab:raid}
 \end{table*}
 
+\begin{table*}[htbp]
+\caption{Previous Project Models Evaluated Directly on RAID}
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Detector & Accuracy & AI Recall & AI F1 & Macro-F1 \\
+\midrule
+TF-IDF Word LR & 0.463 & 0.924 & 0.632 & 0.318 \\
+TF-IDF Char LR & 0.461 & 0.174 & 0.244 & 0.413 \\
+TF-IDF Word SVM & 0.487 & 0.974 & 0.655 & 0.328 \\
+Stylometric LR & 0.500 & 0.000 & 0.000 & 0.333 \\
+Hybrid TF-IDF + Stylometric LR & 0.414 & 0.074 & 0.112 & 0.337 \\
+Saved Epoch TF-IDF SGD & 0.454 & 0.898 & 0.622 & 0.320 \\
+\bottomrule
+\end{tabular}
+\label{tab:previous-on-raid}
+\end{table*}
+
 \begin{table}[htbp]
 \caption{Sanity Checks}
 \centering
@@ -257,6 +277,8 @@ The central result is not simply that one model has the highest score. The stron
 The ablation study clarifies the role of each component. Stylometric-only classification is useful for explainability but weak by itself. Frozen transformer embeddings also remain weak, showing that generic representations without task-specific fine-tuning are not enough for this dataset. Classical TF-IDF models remain competitive, especially under prompt-grouped evaluation, which suggests that lexical and phrase-level artifacts still matter. The full fine-tuned hybrid is therefore the most defensible proposed model, but its results should be reported together with leakage controls and stricter validation.
 
 The RAID experiment improves the paper's comparative study. On the random RAID split, TF-IDF Word SVM reaches 0.980 macro-F1. On the source-grouped split, it remains high at 0.964 macro-F1. However, when \texttt{llama-chat} is held out as an unseen generator, macro-F1 drops to 0.534--0.592 depending on the baseline. This gap is important: it shows that high random-split performance does not imply robust cross-generator detection. The model-holdout setting is therefore the most meaningful RAID result for discussion.
+
+The cross-dataset experiment is even more important for judging the previous project models. When models trained on the original cleaned dataset are tested directly on RAID, the best macro-F1 is only 0.413. Some models achieve high AI recall but very poor macro-F1, meaning they mostly over-predict AI and fail to distinguish both classes reliably. This confirms that the earlier dataset does not teach robust detector behavior on its own. RAID should therefore be used as the main benchmark for final claims, while the original dataset should be framed as a leakage case study and development set.
 
 The practical conclusion is that the system should be presented as an explainable research detector, not as a guaranteed real-world AI-authorship judge. The Streamlit platform demonstrates the detector, exposes stylometric signals, and shows the training log/loss curve so users can inspect model behavior instead of seeing only a final label.
 

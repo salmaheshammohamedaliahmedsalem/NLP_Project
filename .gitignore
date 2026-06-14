@@ -11,3 +11,4 @@ data/processed/*.parquet
 *.log
 !results/training.log
 !results/raid/raid_training.log
+!results/raid/previous_models_on_raid.log
