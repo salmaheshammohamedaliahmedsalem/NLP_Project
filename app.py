@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import sys
+import subprocess
 from pathlib import Path
 
+import joblib
 import pandas as pd
 import streamlit as st
 
@@ -16,6 +18,10 @@ from ai_human_detector.models import make_text_lr  # noqa: E402
 GITHUB_URL = "https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project"
 DATA_PATH = ROOT / "data" / "processed" / "clean_ai_vs_human_content.csv"
 RESULTS_PATH = ROOT / "results" / "experiment_results.csv"
+HISTORY_PATH = ROOT / "results" / "training_history.csv"
+TRAINING_LOG_PATH = ROOT / "results" / "training.log"
+LOSS_CURVE_PATH = ROOT / "results" / "training_loss_curve.svg"
+EPOCH_MODEL_PATH = ROOT / "models" / "epoch_tfidf_sgd.joblib"
 
 
 st.set_page_config(
@@ -96,12 +102,35 @@ def load_results() -> pd.DataFrame:
     return pd.DataFrame()
 
 
+@st.cache_data(show_spinner=False)
+def load_training_history() -> pd.DataFrame:
+    if HISTORY_PATH.exists():
+        return pd.read_csv(HISTORY_PATH)
+    return pd.DataFrame()
+
+
+@st.cache_data(show_spinner=False)
+def load_training_log() -> str:
+    if TRAINING_LOG_PATH.exists():
+        return TRAINING_LOG_PATH.read_text(encoding="utf-8")
+    return "Training log is not available yet. Run: python3 scripts/train_epoch_model.py --epochs 25"
+
+
 @st.cache_resource(show_spinner="Training detector on cleaned research dataset...")
 def train_detector() -> object:
+    if EPOCH_MODEL_PATH.exists():
+        return joblib.load(EPOCH_MODEL_PATH)
     df = load_training_data()
     model = make_text_lr()
     model.fit(df["content"], df["label_binary"])
     return model
+
+
+def predict_probability_ai(model: object, text: str) -> float:
+    if isinstance(model, dict) and {"vectorizer", "classifier"}.issubset(model):
+        matrix = model["vectorizer"].transform([text])
+        return float(model["classifier"].predict_proba(matrix)[0, 1])
+    return float(model.predict_proba([text])[0, 1])
 
 
 def probability_label(probability_ai: float) -> tuple[str, str]:
@@ -149,6 +178,36 @@ def render_results_summary() -> None:
     )
 
 
+def stream_epoch_training(epochs: int) -> None:
+    command = [
+        sys.executable,
+        str(ROOT / "scripts" / "train_epoch_model.py"),
+        "--epochs",
+        str(epochs),
+    ]
+    output_box = st.empty()
+    lines: list[str] = []
+    process = subprocess.Popen(
+        command,
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        bufsize=1,
+    )
+    if process.stdout is not None:
+        for line in process.stdout:
+            lines.append(line.rstrip())
+            output_box.code("\n".join(lines[-120:]), language="text")
+    return_code = process.wait()
+    if return_code != 0:
+        st.error(f"Training failed with exit code {return_code}.")
+    else:
+        st.success("Training finished. Refreshing cached artifacts.")
+        st.cache_data.clear()
+        st.cache_resource.clear()
+
+
 def main() -> None:
     inject_css()
 
@@ -158,7 +217,10 @@ def main() -> None:
         st.markdown("[IEEE paper](paper/main.tex)")
         st.divider()
         st.caption("Model")
-        st.write("TF-IDF word n-grams + Logistic Regression")
+        if EPOCH_MODEL_PATH.exists():
+            st.write("Epoch-trained TF-IDF + SGD logistic detector")
+        else:
+            st.write("TF-IDF word n-grams + Logistic Regression")
         st.caption("Training data")
         training_data = load_training_data()
         st.write(f"{len(training_data):,} strict-cleaned samples")
@@ -187,7 +249,9 @@ def main() -> None:
     with metric_c:
         st.metric("AI Marker Rows Removed", "10,004")
 
-    tab_detect, tab_experiments, tab_method = st.tabs(["Detect", "Experiment Results", "Method"])
+    tab_detect, tab_training, tab_experiments, tab_method = st.tabs(
+        ["Detect", "Training Logs", "Experiment Results", "Method"]
+    )
 
     with tab_detect:
         left, right = st.columns([1.25, 0.75], gap="large")
@@ -203,7 +267,7 @@ def main() -> None:
             st.subheader("Detector Output")
             if analyze and text.strip():
                 model = train_detector()
-                probability_ai = float(model.predict_proba([text])[0, 1])
+                probability_ai = predict_probability_ai(model, text)
                 verdict, confidence = probability_label(probability_ai)
                 probability_human = 1.0 - probability_ai
                 st.markdown(
@@ -226,6 +290,36 @@ def main() -> None:
         if text.strip():
             st.subheader("Stylometric Signals")
             render_feature_panel(text)
+
+    with tab_training:
+        st.subheader("Training and Validation Loss")
+        with st.expander("Run training from the UI", expanded=False):
+            epochs = st.slider("Epochs", min_value=5, max_value=50, value=25, step=5)
+            st.caption("This streams the same terminal logs produced by `scripts/train_epoch_model.py`.")
+            if st.button("Run epoch training and show terminal", type="primary"):
+                stream_epoch_training(epochs)
+
+        history = load_training_history()
+        if history.empty:
+            st.warning("No training history found. Run `python3 scripts/train_epoch_model.py --epochs 25`.")
+        else:
+            chart_data = history.set_index("epoch")[["train_loss", "val_loss"]]
+            st.line_chart(chart_data, use_container_width=True)
+            if LOSS_CURVE_PATH.exists():
+                st.image(str(LOSS_CURVE_PATH), caption="Saved training/validation loss diagram")
+            best_row = history.sort_values(["val_f1", "val_roc_auc"], ascending=False).iloc[0]
+            metric_1, metric_2, metric_3 = st.columns(3)
+            with metric_1:
+                st.metric("Best Epoch", int(best_row["epoch"]))
+            with metric_2:
+                st.metric("Best Validation F1", f"{best_row['val_f1']:.3f}")
+            with metric_3:
+                st.metric("Best Validation AUC", f"{best_row['val_roc_auc']:.3f}")
+            st.dataframe(history, use_container_width=True, hide_index=True)
+
+        st.subheader("Terminal Training Log")
+        st.code(load_training_log(), language="text")
+        st.caption("Re-run locally with: python3 scripts/train_epoch_model.py --epochs 25")
 
     with tab_experiments:
         st.subheader("Research Experiment Table")

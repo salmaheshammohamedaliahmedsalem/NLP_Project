@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+<rect width="100%" height="100%" fill="#f7f7f4"/>
+<text x="72" y="22" font-size="18" font-family="Arial" font-weight="700" fill="#1d1d1b">Training and Validation Loss over Epochs</text>
+<line x1="72" y1="362.00" x2="872" y2="362.00" stroke="#e1e1dc" /><text x="60" y="366.00" text-anchor="end" font-size="12" fill="#555">0.57</text><line x1="72" y1="296.40" x2="872" y2="296.40" stroke="#e1e1dc" /><text x="60" y="300.40" text-anchor="end" font-size="12" fill="#555">0.94</text><line x1="72" y1="230.80" x2="872" y2="230.80" stroke="#e1e1dc" /><text x="60" y="234.80" text-anchor="end" font-size="12" fill="#555">1.30</text><line x1="72" y1="165.20" x2="872" y2="165.20" stroke="#e1e1dc" /><text x="60" y="169.20" text-anchor="end" font-size="12" fill="#555">1.66</text><line x1="72" y1="99.60" x2="872" y2="99.60" stroke="#e1e1dc" /><text x="60" y="103.60" text-anchor="end" font-size="12" fill="#555">2.03</text><line x1="72" y1="34.00" x2="872" y2="34.00" stroke="#e1e1dc" /><text x="60" y="38.00" text-anchor="end" font-size="12" fill="#555">2.39</text>
+<line x1="72" y1="34" x2="72" y2="362" stroke="#777"/>
+<line x1="72" y1="362" x2="872" y2="362" stroke="#777"/>
+<polyline points="72.00,68.26 105.33,202.34 138.67,281.02 172.00,272.58 205.33,261.77 238.67,313.77 272.00,295.69 305.33,307.28 338.67,319.91 372.00,305.22 405.33,326.53 438.67,328.86 472.00,327.72 505.33,331.67 538.67,322.12 572.00,329.24 605.33,330.17 638.67,319.44 672.00,326.59 705.33,338.52 738.67,335.30 772.00,335.45 805.33,339.38 838.67,336.01 872.00,335.20" fill="none" stroke="#2b6f6c" stroke-width="3"/>
+<polyline points="72.00,56.62 105.33,203.39 138.67,278.95 172.00,270.31 205.33,262.97 238.67,309.73 272.00,295.56 305.33,302.62 338.67,319.30 372.00,301.69 405.33,326.99 438.67,327.70 472.00,326.52 505.33,330.61 538.67,321.54 572.00,326.50 605.33,324.52 638.67,318.73 672.00,325.14 705.33,336.36 738.67,333.96 772.00,333.11 805.33,338.00 838.67,333.73 872.00,334.21" fill="none" stroke="#b24c3f" stroke-width="3"/>
+<text x="72" y="398" font-size="13" font-family="Arial" fill="#555">Epoch</text>
+<text x="18" y="46" font-size="13" font-family="Arial" fill="#555" transform="rotate(-90 18,46)">Loss</text>
+<rect x="656" y="42" width="206" height="58" rx="8" fill="#ffffff" stroke="#d9d8d0"/>
+<line x1="674" y1="64" x2="716" y2="64" stroke="#2b6f6c" stroke-width="3"/>
+<text x="726" y="68" font-size="13" font-family="Arial" fill="#1d1d1b">Training loss</text>
+<line x1="674" y1="86" x2="716" y2="86" stroke="#b24c3f" stroke-width="3"/>
+<text x="726" y="90" font-size="13" font-family="Arial" fill="#1d1d1b">Validation loss</text>
+</svg>

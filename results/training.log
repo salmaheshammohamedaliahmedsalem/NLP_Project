@@ -1,0 +1,35 @@
+2026-06-14 10:53:33 | INFO | Starting epoch-based detector training
+2026-06-14 10:53:33 | INFO | Epochs: 25
+2026-06-14 10:53:33 | INFO | Loading cleaned dataset from /Users/salmaheshamsalem/Desktop/NLP_Project/data/processed/clean_ai_vs_human_content.csv
+2026-06-14 10:53:33 | INFO | Train rows: 5124 | Validation rows: 1282
+2026-06-14 10:53:33 | INFO | Train label distribution: {0: 2525, 1: 2599}
+2026-06-14 10:53:33 | INFO | Validation label distribution: {0: 632, 1: 650}
+2026-06-14 10:53:33 | INFO | Epoch 01/25 | train_loss=2.2023 | val_loss=2.2670 | train_f1=0.6366 | val_f1=0.6313 | val_auc=0.5099
+2026-06-14 10:53:33 | INFO | Epoch 02/25 | train_loss=1.4576 | val_loss=1.4517 | train_f1=0.5565 | val_f1=0.5614 | val_auc=0.5170
+2026-06-14 10:53:33 | INFO | Epoch 03/25 | train_loss=1.0205 | val_loss=1.0320 | train_f1=0.4988 | val_f1=0.4924 | val_auc=0.5103
+2026-06-14 10:53:33 | INFO | Epoch 04/25 | train_loss=1.0674 | val_loss=1.0800 | train_f1=0.6466 | val_f1=0.6534 | val_auc=0.5097
+2026-06-14 10:53:33 | INFO | Epoch 05/25 | train_loss=1.1275 | val_loss=1.1208 | train_f1=0.6300 | val_f1=0.6285 | val_auc=0.4974
+2026-06-14 10:53:33 | INFO | Epoch 06/25 | train_loss=0.8386 | val_loss=0.8611 | train_f1=0.5900 | val_f1=0.5876 | val_auc=0.5186
+2026-06-14 10:53:33 | INFO | Epoch 07/25 | train_loss=0.9390 | val_loss=0.9397 | train_f1=0.3793 | val_f1=0.3711 | val_auc=0.5264
+2026-06-14 10:53:33 | INFO | Epoch 08/25 | train_loss=0.8747 | val_loss=0.9006 | train_f1=0.3459 | val_f1=0.3177 | val_auc=0.5072
+2026-06-14 10:53:33 | INFO | Epoch 09/25 | train_loss=0.8045 | val_loss=0.8079 | train_f1=0.6149 | val_f1=0.6211 | val_auc=0.5127
+2026-06-14 10:53:33 | INFO | Epoch 10/25 | train_loss=0.8861 | val_loss=0.9057 | train_f1=0.6485 | val_f1=0.6403 | val_auc=0.5161
+2026-06-14 10:53:33 | INFO | Epoch 11/25 | train_loss=0.7677 | val_loss=0.7652 | train_f1=0.4585 | val_f1=0.4791 | val_auc=0.5259
+2026-06-14 10:53:33 | INFO | Epoch 12/25 | train_loss=0.7548 | val_loss=0.7613 | train_f1=0.5111 | val_f1=0.5109 | val_auc=0.5299
+2026-06-14 10:53:33 | INFO | Epoch 13/25 | train_loss=0.7611 | val_loss=0.7678 | train_f1=0.4030 | val_f1=0.4034 | val_auc=0.5169
+2026-06-14 10:53:33 | INFO | Epoch 14/25 | train_loss=0.7392 | val_loss=0.7451 | train_f1=0.4531 | val_f1=0.4571 | val_auc=0.5250
+2026-06-14 10:53:33 | INFO | Epoch 15/25 | train_loss=0.7922 | val_loss=0.7955 | train_f1=0.4019 | val_f1=0.4353 | val_auc=0.5284
+2026-06-14 10:53:33 | INFO | Epoch 16/25 | train_loss=0.7527 | val_loss=0.7679 | train_f1=0.2546 | val_f1=0.2377 | val_auc=0.5111
+2026-06-14 10:53:33 | INFO | Epoch 17/25 | train_loss=0.7475 | val_loss=0.7789 | train_f1=0.4831 | val_f1=0.4351 | val_auc=0.4870
+2026-06-14 10:53:33 | INFO | Epoch 18/25 | train_loss=0.8071 | val_loss=0.8111 | train_f1=0.6700 | val_f1=0.6695 | val_auc=0.5292
+2026-06-14 10:53:33 | INFO | Epoch 19/25 | train_loss=0.7674 | val_loss=0.7755 | train_f1=0.6243 | val_f1=0.6272 | val_auc=0.5112
+2026-06-14 10:53:33 | INFO | Epoch 20/25 | train_loss=0.7011 | val_loss=0.7131 | train_f1=0.4812 | val_f1=0.4668 | val_auc=0.5198
+2026-06-14 10:53:33 | INFO | Epoch 21/25 | train_loss=0.7190 | val_loss=0.7265 | train_f1=0.5559 | val_f1=0.5521 | val_auc=0.5242
+2026-06-14 10:53:33 | INFO | Epoch 22/25 | train_loss=0.7182 | val_loss=0.7312 | train_f1=0.5994 | val_f1=0.6039 | val_auc=0.5204
+2026-06-14 10:53:33 | INFO | Epoch 23/25 | train_loss=0.6964 | val_loss=0.7040 | train_f1=0.6133 | val_f1=0.5920 | val_auc=0.5360
+2026-06-14 10:53:33 | INFO | Epoch 24/25 | train_loss=0.7151 | val_loss=0.7277 | train_f1=0.6277 | val_f1=0.6028 | val_auc=0.5210
+2026-06-14 10:53:33 | INFO | Epoch 25/25 | train_loss=0.7196 | val_loss=0.7251 | train_f1=0.3709 | val_f1=0.3587 | val_auc=0.5369
+2026-06-14 10:53:33 | INFO | Saved training history to /Users/salmaheshamsalem/Desktop/NLP_Project/results/training_history.csv
+2026-06-14 10:53:33 | INFO | Saved loss curve diagram to /Users/salmaheshamsalem/Desktop/NLP_Project/results/training_loss_curve.svg
+2026-06-14 10:53:33 | INFO | Saved model artifact to /Users/salmaheshamsalem/Desktop/NLP_Project/models/epoch_tfidf_sgd.joblib
+2026-06-14 10:53:33 | INFO | Best epoch=18 | val_loss=0.8111 | val_f1=0.6695 | val_auc=0.5292

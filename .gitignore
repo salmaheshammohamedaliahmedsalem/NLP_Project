@@ -4,6 +4,8 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 venv/
-models/
+models/*
+!models/epoch_tfidf_sgd.joblib
 data/processed/*.parquet
 *.log
+!results/training.log

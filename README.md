@@ -38,6 +38,35 @@ The Streamlit interface provides live AI-vs-human prediction, AI/human probabili
 
 https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project
 
+## Run Epoch Training with Terminal Logs
+
+```bash
+python3 scripts/train_epoch_model.py --epochs 25
+```
+
+This prints epoch-by-epoch terminal logs and writes:
+
+- `results/training.log`
+- `results/training_history.csv`
+- `results/training_loss_curve.svg`
+- `models/epoch_tfidf_sgd.joblib`
+
+The Streamlit app shows the training/validation loss diagram and the terminal log in the `Training Logs` tab.
+
+## Deploy on Streamlit Community Cloud
+
+One-click deployment URL:
+
+https://share.streamlit.io/deploy?repository=https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project&branch=main&mainModule=app.py
+
+Use these settings:
+
+- Repository: `salmaheshammohamedaliahmedsalem/NLP_Project`
+- Branch: `main`
+- Main file path: `app.py`
+- Python dependencies: `requirements.txt`
+- Streamlit config: `.streamlit/config.toml`
+
 This runs:
 
 - TF-IDF word Logistic Regression
