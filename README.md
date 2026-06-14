@@ -2,6 +2,14 @@
 
 This repository contains a reproducible NLP research pipeline for binary classification of human-written versus AI-generated content. The project is structured for a paper-style evaluation rather than a single notebook score.
 
+## Streamlit Platform
+
+- GitHub repository: https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project
+- Streamlit deploy link: https://share.streamlit.io/deploy?repository=https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project&branch=main&mainModule=app.py
+- Local app command: `streamlit run app.py`
+
+After Streamlit Cloud finishes deployment, replace the deploy link above with the generated `*.streamlit.app` URL.
+
 ## Research Focus
 
 The dataset has severe leakage risks: metadata columns such as `source` and `ai_model` perfectly reveal the label, raw AI rows contain explicit `AI-generated` markers, and many normalized texts are duplicated or conflict across labels. The pipeline therefore treats data cleaning, leakage auditing, and strict split design as first-class experimental components.
@@ -14,11 +22,15 @@ The dataset has severe leakage risks: metadata columns such as `source` and `ai_
 ├── challenge_test.csv
 ├── data/processed/clean_ai_vs_human_content.csv
 ├── app.py
+├── .streamlit/config.toml
+├── models/epoch_tfidf_sgd.joblib
 ├── paper/main.tex
 ├── paper/references.bib
 ├── results/
+├── reports/project_summary.md
 ├── scripts/run_experiments.py
 ├── scripts/run_transformer_embeddings.py
+├── scripts/train_epoch_model.py
 └── src/ai_human_detector/
 ```
 
@@ -34,9 +46,7 @@ python3 scripts/run_experiments.py
 streamlit run app.py
 ```
 
-The Streamlit interface provides live AI-vs-human prediction, AI/human probability bars, stylometric signal inspection, experiment result tables, and a direct GitHub link:
-
-https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project
+The Streamlit interface provides live AI-vs-human prediction, AI/human probability bars, stylometric signal inspection, experiment result tables, training logs, and a direct GitHub link.
 
 ## Run Epoch Training with Terminal Logs
 
@@ -55,7 +65,7 @@ The Streamlit app shows the training/validation loss diagram and the terminal lo
 
 ## Deploy on Streamlit Community Cloud
 
-One-click deployment URL:
+Use this prefilled deployment URL:
 
 https://share.streamlit.io/deploy?repository=https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project&branch=main&mainModule=app.py
 
