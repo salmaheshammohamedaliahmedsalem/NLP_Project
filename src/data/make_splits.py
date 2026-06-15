@@ -5,10 +5,10 @@ from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from src.config import RANDOM_STATE
+from src.config import RANDOM_STATE, TEST_SIZE
 
 
-def stratified_train_test_split(df: pd.DataFrame, test_size: float = 0.2) -> tuple[pd.DataFrame, pd.DataFrame]:
+def stratified_train_test_split(df: pd.DataFrame, test_size: float = TEST_SIZE) -> tuple[pd.DataFrame, pd.DataFrame]:
     train_df, test_df = train_test_split(
         df,
         test_size=test_size,

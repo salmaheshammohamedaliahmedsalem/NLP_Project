@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 RANDOM_STATE = 42
+TEST_SIZE = 0.2
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "data"
@@ -14,6 +15,7 @@ MODELS_DIR = OUTPUTS_DIR / "models"
 RESULTS_DIR = OUTPUTS_DIR / "results"
 FIGURES_DIR = OUTPUTS_DIR / "figures"
 REPORTS_DIR = OUTPUTS_DIR / "reports"
+DOWNLOAD_LOG_PATH = REPORTS_DIR / "dataset_download_log.md"
 
 LABEL_HUMAN = 0
 LABEL_AI = 1

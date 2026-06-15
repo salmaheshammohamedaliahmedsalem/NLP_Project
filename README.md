@@ -13,14 +13,15 @@ The project compares lexical, character-level, stylometric, and hybrid feature r
 
 ## Datasets
 
-Main English datasets:
+Raw downloads are stored under `data/raw/` and are never overwritten by preprocessing. Cleaned files are written to `data/processed/`, and train/test splits are written to `data/splits/`.
 
-- SemEval-2024 Task 8 English
-- RAID English subset
+| Dataset | Role | Language | Local Path | Notes |
+| --- | --- | --- | --- | --- |
+| SemEval-2024 Task 8 Subtask A | Main dataset A | English | `data/processed/semeval_english_clean.csv` | Binary human vs AI text detection |
+| RAID | Main dataset B / robustness dataset | English | `data/processed/raid_english_clean.csv` | Balanced subset from RAID train split |
+| KFUPM Arabic Generated Text | Arabic POC | Arabic | `data/processed/arabic_poc_clean.csv` | Original Arabic text vs generated Arabic text |
 
-Arabic:
-
-- Proof-of-concept only. Use SemEval Arabic or another Arabic human-vs-AI dataset if available.
+Preparation keeps punctuation and casing for stylometric analysis. Metadata such as `generator`, `domain`, `attack`, `decoding`, `source_file`, and `dataset_name` is preserved for analysis only and is not used as model input.
 
 ## Models
 
@@ -66,7 +67,15 @@ Install dependencies:
 python3 -m pip install -r requirements.txt
 ```
 
-Put raw files in:
+`raid-bench` was tested and logged, but is not installed by default because the current package path forces old `numpy`/`scikit-learn` builds on Python 3.14. RAID is downloaded through Hugging Face `datasets` instead, and the failure note is preserved in `outputs/reports/dataset_download_log.md`.
+
+Download supported public datasets when possible:
+
+```bash
+python3 scripts/download_datasets.py
+```
+
+If downloads fail because of Google Drive or Hugging Face access, manually put raw files in:
 
 ```text
 data/raw/semeval/
@@ -74,16 +83,31 @@ data/raw/raid/
 data/raw/arabic/
 ```
 
+Current known caveat: SemEval Google Drive may time out with `gdown`. If that happens, manually download official SemEval-2024 Task 8 Subtask A into `data/raw/semeval/`, then run:
+
+```bash
+python3 scripts/prepare_semeval.py
+python3 scripts/02_make_splits.py
+```
+
 Prepare clean datasets:
 
 ```bash
-python3 scripts/01_prepare_datasets.py --skip-raid-stream
+python3 scripts/01_prepare_datasets.py --arabic-skip-hf
 ```
 
-If you want to stream a RAID subset from Hugging Face:
+If you want to stream RAID from Hugging Face when a local RAID file is unavailable:
 
 ```bash
-python3 scripts/01_prepare_datasets.py --raid-max-human 5000 --raid-max-ai 5000
+python3 scripts/01_prepare_datasets.py --raid-allow-hf-fallback --raid-max-human 10000 --raid-max-ai 10000
+```
+
+Run individual dataset preparation steps:
+
+```bash
+python3 scripts/prepare_semeval.py
+python3 scripts/prepare_raid.py --max-human 10000 --max-ai 10000
+python3 scripts/prepare_arabic.py --include-social
 ```
 
 Create train/test splits:
@@ -132,6 +156,10 @@ streamlit run app.py
 - `outputs/figures/confusion_matrices/`
 - `outputs/figures/comparison_plots/`
 - `outputs/figures/feature_importance/`
+- `outputs/reports/dataset_download_log.md`
+- `outputs/reports/semeval_dataset_summary.md`
+- `outputs/reports/raid_dataset_summary.md`
+- `outputs/reports/arabic_dataset_summary.md`
 - `outputs/reports/experiment_summary.md`
 
 ## Final Research Claim
