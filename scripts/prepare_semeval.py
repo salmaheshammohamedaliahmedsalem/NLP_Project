@@ -32,7 +32,11 @@ def discover_tables(path: Path) -> list[Path]:
     files: list[Path] = []
     for pattern in TABLE_PATTERNS:
         files.extend(path.rglob(pattern))
-    return sorted(set(files))
+    tables = sorted(set(files))
+    monolingual = [table for table in tables if "monolingual" in table.name.lower()]
+    if monolingual:
+        return monolingual
+    return [table for table in tables if "multilingual" not in table.name.lower()]
 
 
 def detect_column(df: pd.DataFrame, candidates: tuple[str, ...], kind: str) -> str:
