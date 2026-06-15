@@ -1,55 +1,139 @@
-# Global AI vs Human Content Detection
+# Global AI vs Human Content Detection 2026
 
-Fresh restart workspace for a leakage-aware, paper-quality NLP project.
+Clean research pipeline for binary AI-generated content detection.
 
-The previous implementation, experiments, paper draft, Streamlit app, and generated artifacts have been archived under `old/`. The new root is intentionally clean so the project can be rebuilt with a stronger design while preserving everything we learned.
+The project compares lexical, character-level, stylometric, and hybrid feature representations across two English datasets, then adds a small Arabic proof-of-concept.
 
-## Current Direction
+## Research Questions
 
-We will use prior findings instead of starting from zero:
+1. Which model performs best within each English benchmark?
+2. Which dataset gives better generalization?
+3. Does a detector trained on one dataset generalize to another?
+4. Can the same lexical/stylometric approach extend to Arabic?
 
-- The original Kaggle-style dataset had severe leakage through explicit `AI-generated` markers and metadata such as `source` and `ai_model`.
-- Cleaning that dataset reduced it from 20,000 rows to 6,406 usable text rows.
-- Previous models trained on the original cleaned dataset failed to generalize to RAID, with best macro-F1 around 0.413 on the RAID quick subset.
-- RAID is the stronger benchmark for the final paper because it supports generator-holdout, domain-holdout, attack-holdout, and decoding-strategy evaluation.
+## Datasets
 
-## New Project Goal
+Main English datasets:
 
-Build a robust AI-vs-human detector using RAID as the main benchmark, with:
+- SemEval-2024 Task 8 English
+- RAID English subset
 
-- clean data ingestion and audit reports
-- at least three related-work baselines on the same dataset
-- proposed hybrid model with stylometric machine-signature features
-- ablation study
-- generator/domain/attack holdout evaluation
-- IEEE-format technical report
-- Streamlit demo after the modeling pipeline is stable
+Arabic:
 
-## Fresh Structure
+- Proof-of-concept only. Use SemEval Arabic or another Arabic human-vs-AI dataset if available.
+
+## Models
+
+- `M1_Word_TFIDF_LogReg`: word TF-IDF unigrams/bigrams + Logistic Regression
+- `M2_Char_TFIDF_LinearSVM`: character TF-IDF 3-5 grams + Linear SVM
+- `M3_Stylometric_RandomForest`: handcrafted stylometric features + Random Forest
+- `M4_Hybrid_TFIDF_Stylometric`: word TF-IDF + character TF-IDF + stylometric features + Linear SVM
+
+Metadata such as `generator`, `attack`, `domain`, `source`, `prompt`, and `dataset_name` is never used as model input.
+
+## Directory Structure
 
 ```text
-.
-├── app/              # future Streamlit app
-├── config/           # experiment configuration
+NLP_Project/
+├── app.py
+├── README.md
+├── requirements.txt
 ├── data/
-│   ├── raw/          # raw downloaded data or manifests
-│   ├── processed/    # cleaned training/evaluation files
-│   └── external/     # external benchmark subsets such as RAID
-├── models/           # saved model artifacts
-├── notebooks/        # exploratory notebooks only
-├── old/              # archived previous implementation and outputs
-├── paper/            # new IEEE paper source
-├── reports/          # generated summaries and analysis notes
-├── results/          # metrics, tables, logs, plots
-├── scripts/          # runnable pipeline entry points
-└── src/              # reusable package code
+│   ├── raw/
+│   │   ├── semeval/
+│   │   ├── raid/
+│   │   └── arabic/
+│   ├── processed/
+│   └── splits/
+├── notebooks/
+├── src/
+├── outputs/
+│   ├── models/
+│   ├── results/
+│   ├── figures/
+│   └── reports/
+├── streamlit_app/
+└── old/
 ```
 
-## Immediate Next Steps
+`old/` contains the previous project version and is kept only for reference.
 
-1. Rebuild RAID data preparation with configurable sampling across multiple domains, models, and attacks.
-2. Train three related-work baselines on the same RAID subset.
-3. Add stylometric feature extraction and ablations.
-4. Add the proposed hybrid model only after baselines are stable.
-5. Write the new IEEE paper from the RAID-first results.
+## How To Run
 
+Install dependencies:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+Put raw files in:
+
+```text
+data/raw/semeval/
+data/raw/raid/
+data/raw/arabic/
+```
+
+Prepare clean datasets:
+
+```bash
+python3 scripts/01_prepare_datasets.py --skip-raid-stream
+```
+
+If you want to stream a RAID subset from Hugging Face:
+
+```bash
+python3 scripts/01_prepare_datasets.py --raid-max-human 5000 --raid-max-ai 5000
+```
+
+Create train/test splits:
+
+```bash
+python3 scripts/02_make_splits.py
+```
+
+Run within-dataset experiments:
+
+```bash
+python3 scripts/03_run_english_experiments.py --dataset semeval
+python3 scripts/03_run_english_experiments.py --dataset raid
+```
+
+Run cross-dataset evaluation:
+
+```bash
+python3 scripts/04_cross_dataset_evaluation.py
+```
+
+Run Arabic POC:
+
+```bash
+python3 scripts/05_arabic_poc.py
+```
+
+Build final tables:
+
+```bash
+python3 scripts/06_build_reports.py
+```
+
+Run the app after models are saved:
+
+```bash
+streamlit run app.py
+```
+
+## Outputs
+
+- `outputs/results/semeval_results.csv`
+- `outputs/results/raid_results.csv`
+- `outputs/results/cross_dataset_results.csv`
+- `outputs/results/arabic_poc_results.csv`
+- `outputs/figures/confusion_matrices/`
+- `outputs/figures/comparison_plots/`
+- `outputs/figures/feature_importance/`
+- `outputs/reports/experiment_summary.md`
+
+## Final Research Claim
+
+This project compares lexical, character-level, stylometric, and hybrid feature representations for AI-generated text detection across two English datasets. The proposed hybrid model combines TF-IDF lexical signals with stylometric machine-signature features. Cross-dataset evaluation is used to test whether model performance generalizes beyond a single benchmark. Finally, an Arabic proof-of-concept is included to examine whether the same detection approach can be extended to non-English text.
