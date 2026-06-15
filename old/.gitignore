@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+models/*
+!models/epoch_tfidf_sgd.joblib
+!models/raid_best_tfidf.joblib
+data/processed/*.parquet
+*.log
+!results/training.log
+!results/raid/raid_training.log
+!results/raid/previous_models_on_raid.log
