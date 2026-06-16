@@ -20,7 +20,7 @@ DOWNLOAD_LOG_PATH = REPORTS_DIR / "dataset_download_log.md"
 LABEL_HUMAN = 0
 LABEL_AI = 1
 
-ENGLISH_DATASETS = ("semeval", "raid")
+ENGLISH_DATASETS = ("semeval", "raid", "old_ai")
 MODEL_NAMES = (
     "M1_Word_TFIDF_LogReg",
     "M2_Char_TFIDF_LinearSVM",

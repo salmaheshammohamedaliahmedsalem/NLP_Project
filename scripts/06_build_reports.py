@@ -22,8 +22,10 @@ def main() -> None:
     for name, filename, title in [
         ("semeval", "semeval_results.csv", "Table 1: SemEval Results"),
         ("raid", "raid_results.csv", "Table 2: RAID Results"),
-        ("cross", "cross_dataset_results.csv", "Table 3: Cross-Dataset Results"),
-        ("arabic", "arabic_poc_results.csv", "Table 4: Arabic POC Results"),
+        ("old_ai", "old_ai_results.csv", "Table 3: Old Dataset Results"),
+        ("cross", "cross_dataset_results.csv", "Table 4: Cross-Dataset Results"),
+        ("old_cross", "old_cross_dataset_results.csv", "Table 5: Old Dataset Cross-Evaluation"),
+        ("arabic", "arabic_poc_results.csv", "Table 6: Arabic POC Results"),
     ]:
         df = maybe_load(RESULTS_DIR / filename)
         if df is None:

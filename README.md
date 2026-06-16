@@ -19,6 +19,7 @@ Raw downloads are stored under `data/raw/` and are never overwritten by preproce
 | --- | --- | --- | --- | --- |
 | SemEval-2024 Task 8 Subtask A | Main dataset A | English | `data/processed/semeval_english_clean.csv` | Binary human vs AI text detection |
 | RAID | Main dataset B / robustness dataset | English | `data/processed/raid_english_clean.csv` | Balanced subset from RAID train split |
+| Previous project dataset | Legacy comparison baseline | English/code | `data/processed/old_ai_clean.csv` | Trained separately to test whether old results generalize |
 | KFUPM Arabic Generated Text | Arabic POC | Arabic | `data/processed/arabic_poc_clean.csv` | Original Arabic text vs generated Arabic text |
 
 Preparation keeps punctuation and casing for stylometric analysis. Metadata such as `generator`, `domain`, `attack`, `decoding`, `source_file`, and `dataset_name` is preserved for analysis only and is not used as model input.
@@ -107,6 +108,7 @@ Run individual dataset preparation steps:
 ```bash
 python3 scripts/prepare_semeval.py
 python3 scripts/prepare_raid.py --max-human 10000 --max-ai 10000
+python3 scripts/prepare_old_dataset.py
 python3 scripts/prepare_arabic.py --include-social
 ```
 
@@ -121,12 +123,14 @@ Run within-dataset experiments:
 ```bash
 python3 scripts/03_run_english_experiments.py --dataset semeval
 python3 scripts/03_run_english_experiments.py --dataset raid
+python3 scripts/03_run_english_experiments.py --dataset old_ai
 ```
 
 Run cross-dataset evaluation:
 
 ```bash
 python3 scripts/04_cross_dataset_evaluation.py
+python3 scripts/07_old_dataset_comparison.py
 ```
 
 Run Arabic POC:

@@ -1,4 +1,4 @@
-# Table 4: Arabic POC Results
+# Table 6: Arabic POC Results
 
 | model | train_dataset | test_dataset | accuracy | precision | recall | f1 | roc_auc |
 | --- | --- | --- | --- | --- | --- | --- | --- |

@@ -21,7 +21,7 @@ from src.visualization.plots import save_f1_barplot, save_feature_importance  # 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run within-dataset English experiments.")
-    parser.add_argument("--dataset", choices=["semeval", "raid"], required=True)
+    parser.add_argument("--dataset", choices=["semeval", "raid", "old_ai"], required=True)
     return parser.parse_args()
 
 
@@ -55,7 +55,7 @@ def main() -> None:
             )
         print(result)
     results = pd.DataFrame(rows)
-    output_name = "semeval_results.csv" if args.dataset == "semeval" else "raid_results.csv"
+    output_name = f"{args.dataset}_results.csv"
     results.to_csv(RESULTS_DIR / output_name, index=False)
     save_f1_barplot(results, FIGURES_DIR / "comparison_plots" / f"{args.dataset}_f1.png", f"{args.dataset.upper()} F1 Comparison")
     print(f"Saved results to {RESULTS_DIR / output_name}")

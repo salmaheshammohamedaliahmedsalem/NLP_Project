@@ -25,6 +25,7 @@ def make_split_for(dataset_key: str, filename: str) -> None:
 def main() -> None:
     make_split_for("semeval", "semeval_english_clean.csv")
     make_split_for("raid", "raid_english_clean.csv")
+    make_split_for("old_ai", "old_ai_clean.csv")
     make_split_for("arabic", "arabic_poc_clean.csv")
 
 

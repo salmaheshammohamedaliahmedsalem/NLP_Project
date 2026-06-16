@@ -4,6 +4,7 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 venv/
+.cache/
 *.log
 data/raw/*
 data/processed/*

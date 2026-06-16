@@ -1,4 +1,4 @@
-# Table 3: Cross-Dataset Results
+# Table 4: Cross-Dataset Results
 
 | model | train_dataset | test_dataset | accuracy | precision | recall | f1 | roc_auc |
 | --- | --- | --- | --- | --- | --- | --- | --- |

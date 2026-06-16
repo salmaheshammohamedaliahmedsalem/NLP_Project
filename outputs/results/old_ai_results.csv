@@ -1,0 +1,5 @@
+model,train_dataset,test_dataset,accuracy,precision,recall,f1,roc_auc
+M1_Word_TFIDF_LogReg,old_ai,old_ai,1.0,1.0,1.0,1.0,1.0
+M2_Char_TFIDF_LinearSVM,old_ai,old_ai,1.0,1.0,1.0,1.0,1.0
+M3_Stylometric_RandomForest,old_ai,old_ai,1.0,1.0,1.0,1.0,1.0
+M4_Hybrid_TFIDF_Stylometric,old_ai,old_ai,0.9993935718617344,0.9988023952095808,1.0,0.9994008388256441,1.0
