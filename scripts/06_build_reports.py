@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import pandas as pd
 
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
 from src.config import REPORTS_DIR, RESULTS_DIR
-from src.visualization.result_tables import save_markdown_table
+from src.visualization.result_tables import dataframe_to_markdown, save_markdown_table
 
 
 def maybe_load(path: Path) -> pd.DataFrame | None:
@@ -33,7 +37,7 @@ def main() -> None:
     for title, table in tables:
         lines.append(f"## {title}")
         lines.append("")
-        lines.append(table.to_markdown(index=False))
+        lines.append(dataframe_to_markdown(table))
         lines.append("")
     (REPORTS_DIR / "experiment_summary.md").write_text("\n".join(lines), encoding="utf-8")
     print(f"Saved report summary to {REPORTS_DIR / 'experiment_summary.md'}")
