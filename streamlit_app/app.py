@@ -13,8 +13,10 @@ from streamlit_app.utils import find_model_artifacts, load_model, predict_with_s
 
 st.set_page_config(page_title="AI vs Human Detector", layout="wide")
 
-st.title("AI vs Human Content Detection")
-st.caption("Fresh research app. Train models first, then select a saved artifact for inference.")
+st.title("Leakage-Aware AI vs Human Content Detection")
+st.caption(
+    "Text-only inference app. Metadata such as generator, source, domain, prompt, or dataset name is not used for prediction."
+)
 
 artifacts = find_model_artifacts()
 if not artifacts:
@@ -35,4 +37,8 @@ else:
         st.dataframe(stylometric_summary(text), use_container_width=True, hide_index=True)
 
 st.divider()
+st.markdown(
+    "Research framing: the old dataset is treated as a leakage-audit case study; "
+    "SemEval and RAID are the main English benchmarks, and Arabic is a proof-of-concept."
+)
 st.markdown("Project source: https://github.com/salmaheshammohamedaliahmedsalem/NLP_Project")
